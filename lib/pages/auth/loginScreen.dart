@@ -262,12 +262,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           if ((_loginFormKey.currentState?.validate() ??
                               false)) {
-                            _loginFormKey.currentState?.save();
                             context.read<AuthBloc>().add(
                                   LoginEvent(emailController.text,
                                       passwordController.text),
                                 );
-                          }
+                          } else {}
                         },
                         child: const Text(
                           "Sign in",
@@ -419,6 +418,7 @@ class _LoginScreenState extends State<LoginScreen> {
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () {
+                _loginFormKey.currentState!.reset();
                 Navigator.push(
                   context,
                   MaterialPageRoute(

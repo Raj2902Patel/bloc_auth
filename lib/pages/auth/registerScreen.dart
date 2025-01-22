@@ -87,12 +87,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LoginScreen(),
-                        ),
-                      );
+                      // Navigator.pushReplacement(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => const LoginScreen(),
+                      //   ),
+                      // );
+
+                      Navigator.pop(context);
                     },
                     child: Row(
                       children: [
@@ -429,12 +431,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LoginScreen(),
-                  ),
-                );
+                Navigator.pop(context);
               },
               child: const Text(
                 "Sign In",
