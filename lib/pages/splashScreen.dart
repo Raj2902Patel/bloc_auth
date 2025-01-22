@@ -1,6 +1,9 @@
-import 'package:auth_flow/pages/loginScreen.dart';
+import 'package:auth_flow/pages/auth/loginScreen.dart';
+import 'package:auth_flow/pages/homePage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -10,11 +13,16 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
   void splashLoader() async {
     await Future.delayed(const Duration(seconds: 3));
 
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+    _firebaseAuth.currentUser != null
+        ? Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const HomePage()))
+        : Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const LoginScreen()));
   }
 
   @override
@@ -35,10 +43,9 @@ class _SplashScreenState extends State<SplashScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Center(
-                child: Image.asset(
-                  'assets/image/app_logo.png',
-                  height: 250,
-                  width: 250,
+                child: LoadingAnimationWidget.inkDrop(
+                  size: 100,
+                  color: const Color(0xffBB84E8),
                 ),
               )
             ],
