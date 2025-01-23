@@ -84,9 +84,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.only(top: 62),
                       child: Center(
                         child: Image.asset(
-                          'assets/image/app_logo.png',
+                          'assets/image/img_authGuard.png',
                           height: 129,
                           width: 129,
+                          color: const Color(0xffBB84E8),
                         ),
                       ),
                     ),
@@ -192,8 +193,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             padding: const EdgeInsets.only(
                                 right: 15.0, top: 10.0, bottom: 10.0),
                             child: isPasswordVisible
-                                ? const Icon(Icons.visibility)
-                                : const Icon(Icons.visibility_off),
+                                ? const Icon(Icons.visibility_off)
+                                : const Icon(Icons.visibility),
                           ),
                           padding: EdgeInsets.zero,
                         ),
@@ -298,91 +299,40 @@ class _LoginScreenState extends State<LoginScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Material(
-                                elevation: 5,
-                                borderRadius: BorderRadius.circular(15.0),
-                                child: Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    color: const Color(0xffFFFFFF),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.asset(
-                                      'assets/image/img_google.png',
-                                      height: 30,
-                                      width: 30,
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () {
+                                  context
+                                      .read<AuthBloc>()
+                                      .add(GoogleLoginRequested());
+                                },
+                                child: Material(
+                                  elevation: 5,
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  child: Container(
+                                    height: 50,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.50,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      color: const Color(0xffFFFFFF),
                                     ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 24,
-                              ),
-                              Material(
-                                elevation: 5,
-                                borderRadius: BorderRadius.circular(15.0),
-                                child: Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    color: const Color(0xffFFFFFF),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.asset(
-                                      'assets/image/img_facebook.png',
-                                      height: 30,
-                                      width: 30,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 24,
-                              ),
-                              Material(
-                                elevation: 5,
-                                borderRadius: BorderRadius.circular(15.0),
-                                child: Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    color: const Color(0xffFFFFFF),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.asset(
-                                      'assets/image/img_twitter.png',
-                                      height: 30,
-                                      width: 30,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 24,
-                              ),
-                              Material(
-                                elevation: 5,
-                                borderRadius: BorderRadius.circular(15.0),
-                                child: Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    color: const Color(0xffFFFFFF),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.asset(
-                                      'assets/image/img_linkedin.png',
-                                      height: 30,
-                                      width: 30,
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(12.0),
+                                          child: Image.asset(
+                                            'assets/image/img_google.png',
+                                            height: 30,
+                                            width: 30,
+                                          ),
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.all(12.0),
+                                          child: Text("Sign in with Google"),
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ),

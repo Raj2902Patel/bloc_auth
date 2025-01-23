@@ -76,13 +76,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 50.0),
                       child: InkWell(
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
                         onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LoginScreen(),
-                            ),
-                          );
+                          Navigator.pop(context);
                         },
                         child: CircleAvatar(
                           backgroundColor:
@@ -208,13 +205,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                               width: 10,
                             ),
                             InkWell(
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
                               onTap: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const LoginScreen(),
-                                  ),
-                                );
+                                Navigator.pop(context);
                               },
                               child: const Text(
                                 "Login Here!",

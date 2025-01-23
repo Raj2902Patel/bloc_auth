@@ -273,8 +273,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 padding: const EdgeInsets.only(
                                     right: 15.0, top: 10.0, bottom: 10.0),
                                 child: isRegisterPasswordVisible
-                                    ? const Icon(Icons.visibility)
-                                    : const Icon(Icons.visibility_off),
+                                    ? const Icon(Icons.visibility_off)
+                                    : const Icon(Icons.visibility),
                               ),
                               padding: EdgeInsets.zero,
                             ),
@@ -344,8 +344,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 padding: const EdgeInsets.only(
                                     right: 15.0, top: 10.0, bottom: 10.0),
                                 child: isRegisterConfirmPasswordVisible
-                                    ? const Icon(Icons.visibility)
-                                    : const Icon(Icons.visibility_off),
+                                    ? const Icon(Icons.visibility_off)
+                                    : const Icon(Icons.visibility),
                               ),
                               padding: EdgeInsets.zero,
                             ),

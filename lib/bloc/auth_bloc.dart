@@ -3,6 +3,7 @@ import 'package:auth_flow/bloc/auth_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final FirebaseAuth _firebaseAuth;
@@ -22,6 +23,46 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         _onToggleRegisterPasswordVisibilityEvent);
     on<ToggleRegisterConfirmPasswordVisibilityEvent>(
         _onToggleRegisterConfirmPasswordVisibilityEvent);
+    on<GoogleLoginRequested>(_handleGoogleLogin);
+  }
+
+  Future<void> _handleGoogleLogin(
+      GoogleLoginRequested event, Emitter<AuthState> emit) async {
+    emit(AuthLoadingState());
+    try {
+      GoogleSignIn googleSignIn = GoogleSignIn();
+
+      var result = await googleSignIn.signIn();
+
+      if (result == null) {
+        emit(AuthInitialState());
+        return;
+      }
+
+      final userData = await result.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: userData.accessToken,
+        idToken: userData.idToken,
+      );
+
+      final userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      final user = userCredential.user;
+
+      await FirebaseAuth.instance.signInWithCredential(credential);
+      await _firebaseFirestore.collection('users').doc(user?.uid).set({
+        'uid': user?.uid,
+        'email': result.email,
+        'name': result.displayName,
+        'createdAt': FieldValue.serverTimestamp(),
+      });
+      emit(AuthSuccessState());
+    } catch (error) {
+      print("Error during Google Login: $error");
+
+      emit(AuthErrorState());
+    }
   }
 
   Future<void> _onRegisterEvent(

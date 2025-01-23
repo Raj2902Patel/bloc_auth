@@ -27,3 +27,5 @@ class TogglePasswordVisibilityEvent extends AuthEvent {}
 class ToggleRegisterPasswordVisibilityEvent extends AuthEvent {}
 
 class ToggleRegisterConfirmPasswordVisibilityEvent extends AuthEvent {}
+
+class GoogleLoginRequested extends AuthEvent {}
