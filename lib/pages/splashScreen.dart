@@ -35,9 +35,11 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        fit: StackFit.expand,
         children: [
-          SvgPicture.asset('assets/image/bg_img.svg'),
+          SvgPicture.asset(
+            'assets/image/bg_img.svg',
+            fit: BoxFit.fill,
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
